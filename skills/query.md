@@ -81,6 +81,7 @@ For each search term in `SEARCH_TERMS`, check if it appears (case-insensitive) i
 For each search term, check if it appears (case-insensitive) in the page's tags. A tag match scores +2.
 
 **Tier 3 — Summary match:**
+<!-- Summary match is included because summary text is already available in index.md and improves result quality. This extends the base 4-tier spec (title, tag, filename grep, content grep) with one additional tier. -->
 For each search term, check if it appears (case-insensitive) in the page's summary. A summary match scores +1.
 
 After scoring all pages, sort descending by score. Keep only pages with score > 0.
@@ -106,7 +107,9 @@ grep -ril "<term>" "<STORAGE_PATH>/pages/" | head -10
 Run for the top 1-2 terms. Collect matching filenames not already in the scored list and append at score +0.25.
 
 **Final result set:**
-Take the top 10 pages by score. Store as `CANDIDATE_PAGES` (list of page filenames without `.md`, ordered by score descending).
+Apply a minimum score threshold: collect all pages with score >= 0.25, then take the top 10 of those. If fewer than 3 pages meet the 0.25 threshold, fall back to including all pages with any score > 0 (sparse-brain fallback). Store as `CANDIDATE_PAGES` (list of page filenames without `.md`, ordered by score descending).
+
+<!-- Score threshold rule: 0.25 minimum ensures low-signal noise is excluded (a single weak summary hit scores exactly 1.0, so threshold only filters sub-threshold content-grep results). Sparse-brain fallback (<3 qualifying pages) prevents empty results when the brain has few pages. -->
 
 If `CANDIDATE_PAGES` is empty (zero matches across all tiers), proceed directly to Step 7 (empty brain / no match output).
 
