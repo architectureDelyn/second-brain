@@ -31,8 +31,8 @@ Error: No second-brain found. Run `/second-brain init` first.
 From the config, extract and store:
 - `storage_path` — the root directory of the brain
 - `name` — the brain name (for report header)
-- `ingest.stale_threshold_days` — integer, days before a page is stale (default: `90` if missing)
-- `ingest.max_page_words` — integer, word count limit per page (default: `2000` if missing)
+- `schema.stale_threshold_days` — integer, days before a page is stale (default: `90` if missing)
+- `schema.max_page_words` — integer, word count limit per page (default: `2000` if missing)
 
 All file paths in subsequent steps are relative to `storage_path` (expand `~` to the actual home directory when constructing shell paths).
 
@@ -201,6 +201,8 @@ For each file in `PAGE_FILES` (using content already read where available):
      { severity: "ERROR", code: "missing-frontmatter", message: "pages/<filename> lacks `<field>` field" }
      ```
 
+Note: a line like `title:` (key present but value empty) passes Check E (field is present) but will be caught by Check F (empty required field value).
+
 ### Check F — Invalid Frontmatter (ERROR)
 
 **Definition**: A page whose YAML frontmatter is syntactically invalid or has empty required field values.
@@ -363,7 +365,7 @@ For each `missing-frontmatter` finding where a specific field (not the entire bl
    - `created`: → `created: <TODAY>`
    - `updated`: → `updated: <TODAY>`
    - `sources`: → `sources: []`
-4. Do NOT auto-add `title` — a missing title requires human judgment.
+4. Do NOT auto-add `title` — a missing title key inside an existing frontmatter block requires human judgment. This rule applies only when a frontmatter block already exists but is missing the `title` key.
 5. Write the updated file back.
 
 If the page has no frontmatter block at all (the `missing-frontmatter: has no YAML frontmatter block` finding), add a minimal frontmatter block at the top of the file:
@@ -376,7 +378,7 @@ updated: <TODAY>
 sources: []
 ---
 ```
-Then write the file back.
+Then write the file back. Note: the `title: (untitled)` here is a bootstrap placeholder inserted because no frontmatter existed at all — the user must manually update it to a meaningful title after the fix is applied.
 
 ### Fix 3 — Index Drift → Remove stale index.md entries
 

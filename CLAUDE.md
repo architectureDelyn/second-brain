@@ -55,7 +55,7 @@ tags: [tag1, tag2]          # at least one tag required
 created: YYYY-MM-DD         # ISO date, set once at creation
 updated: YYYY-MM-DD         # ISO date, update on every edit
 sources: [url-or-path]      # list of source references (may be empty list)
-aliases: []                 # always present; alternative names for the page (may be empty)
+aliases: []                 # optional; alternative names for the page (may be empty or omitted)
 ---
 ```
 
@@ -106,7 +106,7 @@ The index is auto-maintained — skills update it on ingest and lint. Humans sho
 - If a page exceeds 2000 words during ingest or update, split it into sub-pages:
   - Parent: `topic.md` (overview + links to sub-pages)
   - Children: `topic-part-1.md`, `topic-part-2.md`, etc.
-- The lint skill flags oversized pages as errors
+- The lint skill flags oversized pages as warnings
 
 ### Cross-Referencing
 
