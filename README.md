@@ -9,15 +9,14 @@ You direct it. The LLM maintains it. Knowledge compounds across sessions, projec
 ## Install
 
 ```bash
-claude plugin add github.com/<your-org>/second-brain-plugin
+claude plugin add github.com/architectureDelyn/second-brain
 ```
 
-> Replace `<your-org>` with your GitHub username or organization name.
 
 For company GitLab:
 
 ```bash
-claude plugin add gitlab.<your-company>.com/<your-org>/second-brain-plugin
+claude plugin add gitlab.<your-company>.com/architectureDelyn/second-brain
 ```
 
 ---

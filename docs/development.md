@@ -5,7 +5,7 @@
 Clone the repo and add it as a local plugin:
 
 ```bash
-git clone https://github.com/<your-org>/second-brain-plugin ~/dev/second-brain-plugin
+git clone https://github.com/architectureDelyn/second-brain ~/dev/second-brain-plugin
 claude plugin add ~/dev/second-brain-plugin
 ```
 
@@ -101,7 +101,7 @@ grep -q "^sources:" "$PAGE" && echo "PASS: sources"
 Once skills are complete (Steps 2-5), publish to GitHub and users install with:
 
 ```bash
-claude plugin add github.com/<your-org>/second-brain-plugin
+claude plugin add github.com/architectureDelyn/second-brain
 ```
 
 Claude Code fetches the repo and reads `CLAUDE.md` to register commands. No npm publish, no PyPI — just a GitHub URL.
