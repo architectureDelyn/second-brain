@@ -17,7 +17,7 @@
       "source": {
         "source": "git-subdir",
         "url": "https://github.com/architectureDelyn/second-brain.git",
-        "path": ".",
+        "path": "plugins/second-brain",
         "ref": "main"
       },
       "homepage": "https://github.com/architectureDelyn/second-brain"
