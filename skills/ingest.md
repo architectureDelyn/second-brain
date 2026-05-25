@@ -36,6 +36,8 @@ From the config, extract and store:
 - `schema.naming_convention` — `"kebab-case"`, `"camelCase"`, or `"free-form"`
 - `ingest.auto_cross_reference` — boolean, controls wiki-link insertion
 
+Also resolve and store the **plugin root path**: this is the directory containing the CLAUDE.md that registered this skill (e.g., if CLAUDE.md lives at `/Users/you/plugins/second-brain/CLAUDE.md`, the plugin root is `/Users/you/plugins/second-brain/`). This path is used in later steps to locate templates.
+
 All file paths in subsequent steps are relative to `storage_path` (expand `~` to the actual home directory when constructing shell paths).
 
 ---
@@ -114,12 +116,9 @@ Read the full content of the source file based on its extension.
 
 **Chunking large files (>3000 words):**
 
-Count the approximate word count of the extracted text:
-```bash
-echo "<content>" | wc -w
-```
-
-Or estimate from character count (divide by 5 as approximation).
+Count the approximate word count of the extracted text. Use one of these methods:
+- If the file is still on disk, count directly: `wc -w < "<filepath>"`
+- If content is already loaded via the Read tool, estimate by dividing the character count by 5.
 
 If word count exceeds 3000:
 - Split the content into sequential 3000-word segments (segment 1: words 1–3000, segment 2: words 3001–6000, etc.).
@@ -196,13 +195,13 @@ Use fuzzy matching: "Machine Learning" and "ML" should match; "Neural Networks" 
 4. Write the updated file back
 
 **If no existing page is found (create path):**
-1. Read the template from `templates/page.md` (path relative to the plugin root — use the directory where CLAUDE.md lives)
+1. Read the template from `templates/page.md`. Determine the plugin root by finding the directory containing the CLAUDE.md that registered this skill. The template path is `<plugin-root>/templates/page.md`.
 2. Replace every token:
 
    | Token | Replace with |
    |-------|-------------|
    | `{{TITLE}}` | Human-readable concept name (e.g., "Transformer Architecture") |
-   | `{{TAGS}}` | Comma-separated tags derived from content and inferred category (minimum 1 tag). Do not quote tags. Example: `machine-learning, neural-networks, transformers` |
+   | `{{TAGS}}` | Comma-separated tags derived from content and inferred category (minimum 1 tag). Do not quote tags. The replacement value is inserted inside the `[...]` brackets already in the template. Example result: `tags: [machine-learning, neural-networks, transformers]` |
    | `{{CREATED_DATE}}` | `TODAY` (YYYY-MM-DD) |
    | `{{UPDATED_DATE}}` | `TODAY` (YYYY-MM-DD) |
    | `{{SOURCES}}` | The source file path or name (e.g., `notes/project-alpha.md`) |

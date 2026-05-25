@@ -72,7 +72,7 @@ Validation schema: `schemas/frontmatter.schema.json`
 Examples:
 ```
 ## [2026-05-25] init | Created second brain "my-brain"
-## [2026-05-25] ingest | Added 3 pages from ~/notes/project-alpha.md
+## [2026-05-25] ingest | project-alpha.md → 3 pages created, 0 pages updated
 ## [2026-05-25] lint | Found 2 stale pages, 0 broken links
 ```
 
