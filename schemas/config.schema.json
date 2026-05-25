@@ -8,7 +8,7 @@
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
     "mode": { "type": "string", "enum": ["personal", "team"] },
     "name": { "type": "string", "minLength": 1 },
-    "storage_path": { "type": "string" },
+    "storage_path": { "type": "string", "minLength": 1 },
     "created_at": { "type": "string", "format": "date-time" },
     "schema": {
       "type": "object",

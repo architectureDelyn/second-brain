@@ -24,10 +24,13 @@ Reference: https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f
 ┌─────────────────────────────────────┐
 │           Wiki Layer                │
 │  ~/.second-brain/ or .second-brain/ │
+│  ├── second-brain-config.json       │
 │  ├── index.md       (catalog)       │
 │  ├── log.md         (ledger)        │
-│  ├── *.md           (wiki pages)    │
-│  └── second-brain-config.json       │
+│  ├── pages/                         │
+│  │   └── *.md      (wiki pages)    │
+│  └── sources/                       │
+│      └── manifest.json              │
 └──────────────┬──────────────────────┘
                │ schemas/
                ▼

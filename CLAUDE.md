@@ -55,7 +55,7 @@ tags: [tag1, tag2]          # at least one tag required
 created: YYYY-MM-DD         # ISO date, set once at creation
 updated: YYYY-MM-DD         # ISO date, update on every edit
 sources: [url-or-path]      # list of source references (may be empty list)
-aliases: []                 # optional alternative names for the page
+aliases: []                 # always present; alternative names for the page (may be empty)
 ---
 ```
 

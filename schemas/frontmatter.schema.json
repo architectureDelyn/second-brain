@@ -3,7 +3,6 @@
   "title": "WikiPageFrontmatter",
   "type": "object",
   "required": ["title", "tags", "created", "updated", "sources"],
-  "additionalProperties": false,
   "properties": {
     "title": { "type": "string", "minLength": 1 },
     "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
