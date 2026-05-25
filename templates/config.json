@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "mode": "{{MODE}}",
+  "name": "{{BRAIN_NAME}}",
+  "storage_path": "{{STORAGE_PATH}}",
+  "created_at": "{{CREATED_AT}}",
+  "schema": {
+    "required_frontmatter": ["title", "tags", "created", "updated", "sources"],
+    "max_page_words": 2000,
+    "stale_threshold_days": 90,
+    "naming_convention": "kebab-case"
+  },
+  "ingest": {
+    "supported_formats": [".md", ".txt", ".pdf"],
+    "auto_cross_reference": true,
+    "pages_per_ingest_target": 10
+  }
+}
