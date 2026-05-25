@@ -14,12 +14,7 @@
         "name": "architectureDelyn"
       },
       "category": "productivity",
-      "source": {
-        "source": "git-subdir",
-        "url": "https://github.com/architectureDelyn/second-brain.git",
-        "path": "plugins/second-brain",
-        "ref": "main"
-      },
+      "source": "./",
       "homepage": "https://github.com/architectureDelyn/second-brain"
     }
   ]

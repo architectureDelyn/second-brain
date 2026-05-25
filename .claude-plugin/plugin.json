@@ -1,0 +1,8 @@
+{
+  "name": "second-brain",
+  "description": "A persistent, compounding knowledge base for Claude Code, inspired by Karpathy's LLM Wiki. Supports personal and team modes.",
+  "author": {
+    "name": "architectureDelyn",
+    "url": "https://github.com/architectureDelyn/second-brain"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SecondBrainConfig",
+  "type": "object",
+  "required": ["version", "mode", "name", "storage_path", "created_at", "schema", "ingest"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "mode": { "type": "string", "enum": ["personal", "team"] },
+    "name": { "type": "string", "minLength": 1 },
+    "storage_path": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "schema": {
+      "type": "object",
+      "required": ["required_frontmatter", "max_page_words", "stale_threshold_days", "naming_convention"],
+      "additionalProperties": false,
+      "properties": {
+        "required_frontmatter": { "type": "array", "items": { "type": "string" } },
+        "max_page_words": { "type": "integer", "minimum": 100 },
+        "stale_threshold_days": { "type": "integer", "minimum": 1 },
+        "naming_convention": { "type": "string", "enum": ["kebab-case", "camelCase", "free-form"] }
+      }
+    },
+    "ingest": {
+      "type": "object",
+      "required": ["supported_formats", "auto_cross_reference", "pages_per_ingest_target"],
+      "additionalProperties": false,
+      "properties": {
+        "supported_formats": { "type": "array", "items": { "type": "string" } },
+        "auto_cross_reference": { "type": "boolean" },
+        "pages_per_ingest_target": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

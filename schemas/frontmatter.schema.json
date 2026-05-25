@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WikiPageFrontmatter",
+  "type": "object",
+  "required": ["title", "tags", "created", "updated", "sources"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "tags": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "created": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "updated": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "sources": { "type": "array", "items": { "type": "string" } },
+    "aliases": { "type": "array", "items": { "type": "string" } }
+  }
+}
