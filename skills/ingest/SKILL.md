@@ -1,3 +1,9 @@
+---
+name: ingest
+description: Ingest local files or folders (.md, .txt, .pdf) into the Second Brain wiki
+argument-hint: <file-or-folder-path>
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+---
 # Skill: `/second-brain ingest`
 
 This skill implements the `ingest` pipeline for the second-brain plugin. When a user runs `/second-brain ingest <source>`, follow every step in this document precisely and in order. Execute the pipeline silently after validation — do not interrupt with questions unless a duplicate is detected.

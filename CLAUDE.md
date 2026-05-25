@@ -9,19 +9,19 @@ description: Persistent, compounding knowledge base maintained by LLM. Inspired 
 ## Commands
 
 ### `/second-brain init`
-**Skill:** `skills/init.md`
+**Skill:** `skills/init/SKILL.md`
 Initialize a new second-brain in personal (`~/.second-brain/`) or team (`./.second-brain/`) mode.
 
 ### `/second-brain ingest`
-**Skill:** `skills/ingest.md`
+**Skill:** `skills/ingest/SKILL.md`
 Ingest raw sources (markdown, text, PDFs) into the wiki layer, creating or updating wiki pages with proper frontmatter.
 
 ### `/second-brain query`
-**Skill:** `skills/query.md`
+**Skill:** `skills/query/SKILL.md`
 Query the knowledge base using natural language. Returns relevant wiki pages, cross-references, and summaries.
 
 ### `/second-brain lint`
-**Skill:** `skills/lint.md`
+**Skill:** `skills/lint/SKILL.md`
 Validate all wiki pages against the schema: frontmatter completeness, naming conventions, stale pages, broken links, and oversized pages.
 
 ---

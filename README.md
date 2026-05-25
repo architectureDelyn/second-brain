@@ -6,12 +6,22 @@ You direct it. The LLM maintains it. Knowledge compounds across sessions, projec
 
 ---
 
-## Install
+## Installation
 
-```bash
-claude plugin add github.com/architectureDelyn/second-brain
+### Via Marketplace (Recommended)
+First add this repo as a marketplace source:
+```
+/plugin marketplace add https://github.com/architectureDelyn/second-brain
+```
+Then install:
+```
+/plugin install second-brain
 ```
 
+### Direct URL Install
+```
+claude plugin add github.com/architectureDelyn/second-brain
+```
 
 For company GitLab:
 
@@ -25,13 +35,13 @@ claude plugin add gitlab.<your-company>.com/architectureDelyn/second-brain
 
 ```bash
 # 1. Set up your brain
-/second-brain init
+/second-brain:init
 
 # 2. Add knowledge
-/second-brain ingest ./docs
+/second-brain:ingest ./docs
 
 # 3. Search your brain
-/second-brain query "how does our auth system work?"
+/second-brain:query "how does our auth system work?"
 ```
 
 ---
@@ -40,10 +50,10 @@ claude plugin add gitlab.<your-company>.com/architectureDelyn/second-brain
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `/second-brain init` | Interactive setup wizard — personal or team mode | `/second-brain init` |
-| `/second-brain ingest <source>` | Ingest local files (`.md`, `.txt`, `.pdf`) or folders into the wiki | `/second-brain ingest ./architecture-notes.md` |
-| `/second-brain query <question>` | Search your brain and get synthesized answers with citations | `/second-brain query "what are our API rate limits?"` |
-| `/second-brain lint [--fix]` | Health check your brain — broken links, stale pages, schema errors. Add `--fix` to auto-repair safe issues | `/second-brain lint --fix` |
+| `/second-brain:init` | Interactive setup wizard — personal or team mode | `/second-brain:init` |
+| `/second-brain:ingest <source>` | Ingest local files (`.md`, `.txt`, `.pdf`) or folders into the wiki | `/second-brain:ingest ./architecture-notes.md` |
+| `/second-brain:query <question>` | Search your brain and get synthesized answers with citations | `/second-brain:query "what are our API rate limits?"` |
+| `/second-brain:lint [--fix]` | Health check your brain — broken links, stale pages, schema errors. Add `--fix` to auto-repair safe issues | `/second-brain:lint --fix` |
 
 ---
 

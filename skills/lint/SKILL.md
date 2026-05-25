@@ -1,3 +1,9 @@
+---
+name: lint
+description: Run health checks on your Second Brain (broken links, orphan pages, stale content). Use --fix to auto-repair safe issues.
+argument-hint: [--fix]
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+---
 # Skill: `/second-brain lint`
 
 This skill implements the `lint` health-check for the second-brain plugin. When a user runs `/second-brain lint` or `/second-brain lint --fix`, follow every step in this document precisely and in order. Execute all checks silently, collect all findings, then output the report. Do not interrupt with questions.

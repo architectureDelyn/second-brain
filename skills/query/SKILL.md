@@ -1,3 +1,9 @@
+---
+name: query
+description: Search your Second Brain and get a synthesized answer with citations
+argument-hint: <question>
+allowed-tools: [Read, Bash, Glob, Grep]
+---
 # Skill: `/second-brain query`
 
 This skill implements the `query` pipeline for the second-brain plugin. When a user runs `/second-brain query <question>`, follow every step in this document precisely and in order. Execute the pipeline silently after loading config — do not interrupt with questions until the optional save-back offer at the end.

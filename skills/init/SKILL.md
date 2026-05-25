@@ -1,3 +1,9 @@
+---
+name: init
+description: Initialize a Second Brain knowledge base (interactive setup wizard for personal or team mode)
+argument-hint: [--reconfigure]
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+---
 # Skill: `/second-brain init`
 
 This skill implements the `init` wizard for the second-brain plugin. When a user runs `/second-brain init`, follow every step in this document precisely and in order. Ask questions one at a time — never batch multiple questions in a single prompt.
