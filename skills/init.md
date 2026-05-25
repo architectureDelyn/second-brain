@@ -23,7 +23,24 @@ Check both locations using the Read tool (each check will return an error if the
 - `.second-brain/second-brain-config.json` (relative to current working directory)
 - `~/.second-brain/second-brain-config.json` (user home directory)
 
-**If either file exists:**
+**If both files exist simultaneously:**
+
+Warn the user:
+
+```
+⚠️  A second-brain was found in TWO locations:
+    - Team:     .second-brain/second-brain-config.json
+    - Personal: ~/.second-brain/second-brain-config.json
+
+Which one would you like to reconfigure?
+  (1) Team     — .second-brain/second-brain-config.json
+  (2) Personal — ~/.second-brain/second-brain-config.json
+  (b) Abort    — keep both unchanged
+```
+
+Wait for the user's response. Accept `1`/`team`/`t` (continue with team path), `2`/`personal`/`p` (continue with personal path), or `b`/`abort`/`cancel`/`no` (stop). If aborting, output "Aborted. Your existing brains are unchanged." and stop immediately.
+
+**If only one file exists:**
 
 Warn the user:
 
@@ -59,6 +76,8 @@ Enter 1 or 2 (or type "personal" / "team"):
 Wait for the user's response. Accept:
 - `1`, `personal`, `p` → mode = `"personal"`
 - `2`, `team`, `t` → mode = `"team"`
+
+If the response doesn't match any accepted value, re-ask once: "Please enter 1 for personal or 2 for team." If still unrecognized, abort with an error.
 
 Store the chosen mode for use in later steps.
 
@@ -128,6 +147,8 @@ Wait for the user's response.
 - `1`, `kebab-case`, blank/Enter → `"kebab-case"`
 - `2`, `camelCase`, `camel` → `"camelCase"`
 - `3`, `free-form`, `free`, `freeform` → `"free-form"`
+
+If the response doesn't match any accepted value, re-ask once: "Please enter 1 (kebab-case), 2 (camelCase), or 3 (free-form)." If still unrecognized, abort with an error.
 
 Store the naming convention.
 
@@ -208,10 +229,8 @@ Replace every token:
 | `{{BRAIN_NAME}}` | brain name (from Step 3) |
 | `{{STORAGE_PATH}}` | storage path string (from Step 4) |
 | `{{CREATED_AT}}` | ISO 8601 datetime (from Step 7a) |
-
-Also substitute user-configured values into the nested `schema` object:
-- `"stale_threshold_days": 90` → replace `90` with the stale threshold from Step 6
-- `"naming_convention": "kebab-case"` → replace `"kebab-case"` with the chosen convention from Step 5
+| `{{STALE_THRESHOLD_DAYS}}` | stale threshold integer (from Step 6, default: 90) |
+| `{{NAMING_CONVENTION}}` | naming convention string (from Step 5, default: `kebab-case`) |
 
 Write the completed JSON to `<STORAGE_PATH>/second-brain-config.json`.
 
@@ -257,6 +276,19 @@ The first log entry must be:
 ```
 ## [YYYY-MM-DD] init | Created second brain "<BRAIN_NAME>"
 ```
+
+### 7h — Create `.gitignore` (Team Mode Only)
+
+If mode is `"team"`, write the file `<STORAGE_PATH>/.gitignore` with this exact content:
+
+```
+.DS_Store
+*.swp
+*.tmp
+*~
+```
+
+If mode is `"personal"`, skip this step (the personal directory is not git-tracked).
 
 ---
 
@@ -323,9 +355,10 @@ Next steps:
     ├─ mkdir pages/ sources/
     ├─ touch pages/.gitkeep
     ├─ write sources/manifest.json
-    ├─ write second-brain-config.json  ← template/config.json + tokens
+    ├─ write second-brain-config.json  ← templates/config.json + tokens
     ├─ write index.md                  ← templates/index.md + tokens
     ├─ write log.md                    ← templates/log.md + tokens
+    ├─ (team) write .gitignore
     ├─ (team) print git reminder
     └─ print success message
 ```
