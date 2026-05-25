@@ -23,3 +23,6 @@ scratch/
 
 # Second-brain data directories (never commit personal/team brain data)
 .second-brain/
+
+# OMC orchestration state
+.omc/
